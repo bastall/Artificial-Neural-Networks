@@ -39,3 +39,9 @@ def load_data(batch_size=64):
         batch_size = batch_size,
         shuffle = True
     ) 
+    
+    test_loader = DataLoader(
+        test_dataset,
+        batch_size = batch_size,
+        shuffle = False
+    )
