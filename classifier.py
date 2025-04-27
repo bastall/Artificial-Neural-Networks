@@ -23,7 +23,15 @@ class FashionClassifier(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(kernel_size = 2)
         )
-
+        
+        # Fully connected layers
+        self.fc = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear( 7 * 7 * 64, 512),
+            nn.ReLU(),
+            nn.Dropout(0,5), # to help with preventing overfitting
+            nn.Linear(512, 10) 
+        )
 
 def load_data(batch_size=64):
     transform = transforms.Compose([
