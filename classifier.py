@@ -45,3 +45,5 @@ def load_data(batch_size=64):
         batch_size = batch_size,
         shuffle = False
     )
+    
+    return train_loader, test_loader, train_dataset, test_dataset
