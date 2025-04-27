@@ -5,4 +5,12 @@ import torchvision
 import matplotlib.pyplot as plt
 
 class FashionClassifier(nn.Module):
-    
+    def __init__(self):
+        super(FashionClassifier, self).__init__()
+
+
+def load_data(batch_size=64):
+    transform = transforms.Compose([
+        transforms.ToTensor(), # Convert images to PyTorch tensors
+        transforms.Normalize((0.5,), (0.5,)) # Normalize to range [-1,1]
+    ])
