@@ -4,6 +4,7 @@ import numpy as np
 import torchvision
 from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
+from torch.utils.data import DataLoader
 
 class FashionClassifier(nn.Module):
     def __init__(self):
@@ -31,3 +32,10 @@ def load_data(batch_size=64):
         transform = transform,
         download = False
     )
+    
+    # create data loaders
+    train_loader = DataLoader(
+        train_dataset,
+        batch_size = batch_size,
+        shuffle = True
+    ) 
