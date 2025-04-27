@@ -29,7 +29,7 @@ class FashionClassifier(nn.Module):
             nn.Flatten(),
             nn.Linear( 7 * 7 * 64, 512),
             nn.ReLU(),
-            nn.Dropout(0,5), # to help with preventing overfitting
+            nn.Dropout(0.5), # to help with preventing overfitting
             nn.Linear(512, 10) 
         )
         
