@@ -13,6 +13,13 @@ class FashionClassifier(nn.Module):
         # first convolutional layer
         self.conv1 = nn.Sequential(
             nn.Conv2d(1, 32, kernel_size = 3, padding = 1),
+            nn.ReLU(), #activation function
+            nn.MaxPool2d(kernel_size = 2)
+        )
+        
+        # Second convolutional layer
+        self.conv2 = nn.Sequential(
+            nn.Conv2d(32, 64, kernel_size = 3, padding = 1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size = 2)
         )
