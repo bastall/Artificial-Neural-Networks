@@ -16,9 +16,18 @@ def load_data(batch_size=64):
         transforms.Normalize((0.5,), (0.5,)) # Normalize to range [-1,1]
     ])
     
+    # Load training data
     train_dataset = datasets.FashionMNIST(
         root = ".",
         train = True,
+        transform = transform,
+        download = False
+    )
+    
+    # Load test data
+    test_dataset = datasets.FashionMNIST(
+        root = ".",
+        train = False,
         transform = transform,
         download = False
     )
