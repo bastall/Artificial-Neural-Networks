@@ -9,6 +9,13 @@ from torch.utils.data import DataLoader
 class FashionClassifier(nn.Module):
     def __init__(self):
         super(FashionClassifier, self).__init__()
+        
+        # first convolutional layer
+        self.conv1 = nn.Sequential(
+            nn.Conv2d(1, 32, kernel_size = 3, padding = 1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size = 2)
+        )
 
 
 def load_data(batch_size=64):
@@ -47,3 +54,21 @@ def load_data(batch_size=64):
     )
     
     return train_loader, test_loader, train_dataset, test_dataset
+
+# Test if data is loading correctly
+d#ef test_data_loading(train_loader):
+    # Get a single batch from the train_loader
+  #  data_iter = iter(train_loader)
+   # images, labels = next(data_iter)
+
+    # Print the shape of the images and the corresponding labels
+    #print(f"Batch of images shape: {images.shape}")
+    #print(f"Batch of labels shape: {labels.shape}")
+
+    # visualize one image from the batch
+    #plt.imshow(images[0].squeeze(), cmap='gray')
+    #plt.title(f"Label: {labels[0]}")
+    #plt.show()
+
+#train_loader, test_loader, _, _ = load_data()
+#test_data_loading(train_loader)
