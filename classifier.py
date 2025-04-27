@@ -32,6 +32,12 @@ class FashionClassifier(nn.Module):
             nn.Dropout(0,5), # to help with preventing overfitting
             nn.Linear(512, 10) 
         )
+        
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.conv2(x)
+        x = self.fc(x)
+        return x
 
 def load_data(batch_size=64):
     transform = transforms.Compose([
