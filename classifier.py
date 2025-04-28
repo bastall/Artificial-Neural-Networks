@@ -2,9 +2,11 @@ import torch
 import torch.nn as nn
 import numpy as np
 import torchvision
+import torch.optim as optim
 from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
+import time
 
 class FashionClassifier(nn.Module):
     def __init__(self):
@@ -107,3 +109,15 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
     # Training log
     log = []
     best_accuracy = 0.0
+    
+    # Training loop
+    for epoch in range(num_epochs):
+        model.train()
+        running_loss = 0.0
+        
+        start_time = time.time()
+        
+        for images, labels in train_loader:
+            images, labels = images.to(device), labels.to(device)
+            
+            
