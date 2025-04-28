@@ -120,4 +120,8 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
         for images, labels in train_loader:
             images, labels = images.to(device), labels.to(device)
             
+            # Forward pass
+            outputs = model(images)
+            loss = criterion(outputs, labels)
             
+           
