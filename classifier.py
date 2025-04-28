@@ -77,7 +77,7 @@ def load_data(batch_size=64):
     return train_loader, test_loader, train_dataset, test_dataset
 
 # Test if data is loading correctly
-d#ef test_data_loading(train_loader):
+#def test_data_loading(train_loader):
     # Get a single batch from the train_loader
   #  data_iter = iter(train_loader)
    # images, labels = next(data_iter)
@@ -99,3 +99,7 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
     print(f"Using device: {device}")
     
     model = model.to(device)
+    
+    # Loss function and optimizer
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
