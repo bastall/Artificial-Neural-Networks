@@ -124,4 +124,9 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
             outputs = model(images)
             loss = criterion(outputs, labels)
             
-           
+            # Backwrad and optimize
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            
+            
