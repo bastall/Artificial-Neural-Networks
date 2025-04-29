@@ -106,7 +106,7 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     
     # Training log
-    log = []
+    log_entries = []
     best_accuracy = 0.0
     total_step = len(train_loader)
     
