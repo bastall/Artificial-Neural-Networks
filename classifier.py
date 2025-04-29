@@ -137,3 +137,8 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
         
         # Evaluate model
         accuracy  = evaluate_model(model, test_loader, device)
+        
+        # Save if it's the best model so far
+        if accuracy > best_accuracy:
+            best_accuracy = accuracy
+            torch.save(model.state_dict(), 'best_fashion_model.pth')
