@@ -184,6 +184,8 @@ def predict_image(model, image_path):
             transforms.ToTensor(),
             transforms.Normalize((0.5,), (0.5,))
         ])  
+        
+        
 
 
 if __name__ == "__main__":
