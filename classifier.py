@@ -168,6 +168,12 @@ def predict_image(model, image_path):
     
     device = torch.device('cpu')  # use CPU
     model = model.to(device)
+    model.eval()
+    
+    try:
+        # Load grayscale image
+        from PIL import Image
+        img = Image.open(image_path).convert('L')  # Convert to grayscale
 
 
 
