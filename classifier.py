@@ -181,13 +181,9 @@ def predict_image(model, image_path):
             img = transform_resize(img.unsqueeze(0)).squeeze(0)
             
          # Apply transformations
-        transform = transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize((0.5,), (0.5,))
-        ])  
-        
-        img_tensor = transform(img).unsqueeze(0)  # Add batch dimension
-        img_tensor = img_tensor.to(device)
+        transform_norm = transforms.Normalize((0.5,), (0.5,))
+        img_tensor = transform_norm(img.unsqueeze(0)).unsqueeze(0)  # Add channel and batch dimensions
+        img_tensor = img_tensor.to(device) 
         
         # Forward pass
         with torch.no_grad():
