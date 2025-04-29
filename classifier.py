@@ -192,6 +192,10 @@ def predict_image(model, image_path):
         with torch.no_grad():
             outputs = model(img_tensor)
             _, predicted = torch.max(outputs, 1)
+        
+         # Get prediction
+        predicted_class = class_labels[predicted.item()]
+        return predicted_class
 
 if __name__ == "__main__":
     train_loader, test_loader, _, _ = load_data()
