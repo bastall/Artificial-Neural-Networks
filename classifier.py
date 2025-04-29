@@ -113,11 +113,8 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
     # Training loop
     for epoch in range(num_epochs):
         model.train()
-        running_loss = 0.0
-        
-        start_time = time.time()
-        
-        for images, labels in train_loader:
+         
+        for i, (images, labels) in enumerate(train_loader):
             images, labels = images.to(device), labels.to(device)
             
             # Forward pass
@@ -129,7 +126,12 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
             loss.backward()
             optimizer.step()
             
-            running_loss += loss.item()
+            # Print step statistics
+            if (i+1) % 50 == 0:
+                log_entry = 'Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'.format(
+                    epoch+1, num_epochs, i+1, total_step, loss.item())
+                print(log_entry)
+                log_entries.append(log_entry)
             
         # calculate average loss
         epoch_loss = running_loss /len(train_loader)
