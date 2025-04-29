@@ -147,3 +147,11 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
         epoch_time = time.time() - start_time
         print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {epoch_loss:.4f}, '
               f'Test Accuracy: {accuracy:.2f}%, Time: {epoch_time:.2f}s')
+        
+        # Log for later analysis
+        log.append({
+            'epoch': epoch + 1,
+            'loss': epoch_loss,
+            'accuracy': accuracy,
+            'time': epoch_time
+        })
