@@ -196,7 +196,10 @@ def predict_image(model, image_path):
          # Get prediction
         predicted_class = class_labels[predicted.item()]
         return predicted_class
-
+        
+    except Exception as e:
+        return f"Error processing image: {str(e)}"
+      
 if __name__ == "__main__":
     train_loader, test_loader, _, _ = load_data()
     model = FashionClassifier()
