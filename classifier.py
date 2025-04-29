@@ -184,10 +184,14 @@ def predict_image(model, image_path):
             transforms.ToTensor(),
             transforms.Normalize((0.5,), (0.5,))
         ])  
+        
         img_tensor = transform(img).unsqueeze(0)  # Add batch dimension
         img_tensor = img_tensor.to(device)
         
-
+        # Forward pass
+        with torch.no_grad():
+            outputs = model(img_tensor)
+            _, predicted = torch.max(outputs, 1)
 
 if __name__ == "__main__":
     train_loader, test_loader, _, _ = load_data()
