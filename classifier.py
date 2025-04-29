@@ -130,3 +130,6 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
             optimizer.step()
             
             running_loss += loss.item()
+            
+        # calculate average loss
+        epoch_loss = running_loss /len(train_loader)
