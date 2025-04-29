@@ -210,11 +210,7 @@ def load_or_train_model(model, train_loader, test_loader):
         print("Loaded pre-trained model")
     else:
         print("Training new model...")
-        model, training_log = train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001)
-        # Save training log
-        with open('log.txt', 'w') as f:
-            for entry in training_log:
-                f.write(f"Epoch: {entry['epoch']}, Loss: {entry['loss']:.4f}, Accuracy: {entry['accuracy']:.2f}%\n")
+        model = train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001)
     return model
 
 def interactive_predict(model):
