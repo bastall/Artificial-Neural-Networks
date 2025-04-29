@@ -133,12 +133,18 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
                 print(log_entry)
                 log_entries.append(log_entry)
             
-        # calculate average loss
-        epoch_loss = running_loss /len(train_loader)
-        
-        # Evaluate model
-        accuracy  = evaluate_model(model, test_loader, device)
-        
+        # Evaluate model after each epoch
+        model.eval()
+        correct = 0
+        total = 0
+        with torch.no_grad():
+            for images, labels in test_loader:
+                images, labels = images.to(device), labels.to(device)
+                outputs = model(images)
+                _, predicted = torch.max(outputs.data, 1)
+                total += labels.size(0)
+                correct += (predicted == labels).sum().item()
+                
         # Save if it's the best model so far
         if accuracy > best_accuracy:
             best_accuracy = accuracy
