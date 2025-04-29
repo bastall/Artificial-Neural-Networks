@@ -162,6 +162,12 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
     
     return model, log
 
+def predict_image(model, image_path):
+    class_labels = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+                   'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+    
+    
+
 
 if __name__ == "__main__":
     train_loader, test_loader, _, _ = load_data()
