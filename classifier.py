@@ -109,6 +109,9 @@ def evaluate_model (model, test_loader, device):
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
+    
+    accuracy = 100 * correct / total
+    return accuracy        
 
 def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001):
     device = torch.device('cuda' if torch.cuda.is_vailable() else 'cpu')
