@@ -214,6 +214,16 @@ def load_or_train_model(model):
                 f.write(f"Epoch: {entry['epoch']}, Loss: {entry['loss']:.4f}, Accuracy: {entry['accuracy']:.2f}%\n")
     return model
 
+def interactive_predict(model):
+    print("Done!")
+    while True:
+        filepath = input("Please enter a filepath (or 'exit' to quit): ")
+        if filepath.lower() == 'exit':
+            print("Exiting...")
+            break
+        prediction = predict_image(model, filepath)
+        print(f"Classifier: {prediction}")
+
 
 if __name__ == "__main__":
     
