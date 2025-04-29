@@ -96,8 +96,8 @@ def evaluate_model (model, test_loader, device):
     return accuracy        
 
 def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001):
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"Using device: {device}")
+    device = torch.device('cpu')  # use CPU
+    model = model.to(device)
     
     model = model.to(device)
     
@@ -217,7 +217,7 @@ def load_or_train_model(model, train_loader, test_loader):
 def interactive_predict(model):
     print("Done!")
     while True:
-        filepath = input("Please enter a filepath (or 'exit' to quit): ")
+        filepath = input("Please enter a filepath:\n")
         if filepath.lower() == 'exit':
             print("Exiting...")
             break
