@@ -154,19 +154,6 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
         if accuracy > best_accuracy:
             best_accuracy = accuracy
             torch.save(model.state_dict(), 'best_fashion_model.pth')
-            
-         # Print statistics
-        epoch_time = time.time() - start_time
-        print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {epoch_loss:.4f}, '
-              f'Test Accuracy: {accuracy:.2f}%, Time: {epoch_time:.2f}s')
-        
-        # Log for later analysis
-        log.append({
-            'epoch': epoch + 1,
-            'loss': epoch_loss,
-            'accuracy': accuracy,
-            'time': epoch_time
-        })
         
     print(f'Best accuracy: {best_accuracy:.2f}%')
     print(f'Training complete!')
@@ -174,7 +161,12 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
     # Save final model
     torch.save(model.state_dict(), 'final_fashion_model.pth')
     
-    return model, log
+    # Save training log to file
+    with open('log.txt', 'w') as f:
+        for entry in log_entries:
+            f.write(entry + '\n')
+    
+    return model
 
 def predict_image(model, image_path):
     class_labels = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
