@@ -171,9 +171,9 @@ def predict_image(model, image_path):
     model.eval()
     
     try:
-        # Load grayscale image
-        from PIL import Image
-        img = Image.open(image_path).convert('L')  # Convert to grayscale
+        # Load grayscale image using torchvision.io 
+        img = torchvision.io.read_image(image_path, mode=torchvision.io.ImageReadMode.GRAY)
+        img = img.squeeze() 
         
         # Resize to 28x28 if needed
         if img.size != (28, 28):
