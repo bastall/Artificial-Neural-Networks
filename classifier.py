@@ -184,7 +184,8 @@ def predict_image(model, image_path):
             transforms.ToTensor(),
             transforms.Normalize((0.5,), (0.5,))
         ])  
-        
+        img_tensor = transform(img).unsqueeze(0)  # Add batch dimension
+        img_tensor = img_tensor.to(device)
         
 
 
