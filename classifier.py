@@ -7,6 +7,7 @@ from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 import time
+import os
 
 class FashionClassifier(nn.Module):
     def __init__(self):
@@ -133,3 +134,6 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
             
         # calculate average loss
         epoch_loss = running_loss /len(train_loader)
+        
+        # Evaluate model
+        accuracy  = evaluate_model(model, test_loader, device)
