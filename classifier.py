@@ -199,8 +199,21 @@ def predict_image(model, image_path):
         
     except Exception as e:
         return f"Error processing image: {str(e)}"
-      
+    
+    
+def load_or_train_model(model):
+    if os.path.exists('best_fashion_model.pth'):
+        model.load_state_dict(torch.load('best_fashion_model.pth', map_location=torch.device('cpu')))
+        print("Loaded pre-trained model")
+    else:
+        print("Training new model...")
+        model, training_log = train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001)
+        # Save training log
+        with open('log.txt', 'w') as f:
+            for entry in training_log:
+                f.write(f"Epoch: {entry['epoch']}, Loss: {entry['loss']:.4f}, Accuracy: {entry['accuracy']:.2f}%\n")
+    return model
+
+
 if __name__ == "__main__":
-    train_loader, test_loader, _, _ = load_data()
-    model = FashionClassifier()
-    trained_model, training_log = train_model(model, train_loader, test_loader, num_epochs=5)
+    
