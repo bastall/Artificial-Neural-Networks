@@ -174,7 +174,10 @@ def predict_image(model, image_path):
         # Load grayscale image
         from PIL import Image
         img = Image.open(image_path).convert('L')  # Convert to grayscale
-
+        
+        # Resize to 28x28 if needed
+        if img.size != (28, 28):
+            img = img.resize((28, 28), Image.LANCZOS)
 
 
 if __name__ == "__main__":
