@@ -176,8 +176,9 @@ def predict_image(model, image_path):
         img = img.squeeze() 
         
         # Resize to 28x28 if needed
-        if img.size != (28, 28):
-            img = img.resize((28, 28), Image.LANCZOS)
+        if img.shape != torch.Size([28, 28]):
+            transform_resize = transforms.Resize((28, 28), antialias=True)
+            img = transform_resize(img.unsqueeze(0)).squeeze(0)
             
          # Apply transformations
         transform = transforms.Compose([
