@@ -166,7 +166,9 @@ def predict_image(model, image_path):
     class_labels = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                    'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
     
-    
+    device = torch.device('cpu')  # use CPU
+    model = model.to(device)
+
 
 
 if __name__ == "__main__":
