@@ -178,6 +178,12 @@ def predict_image(model, image_path):
         # Resize to 28x28 if needed
         if img.size != (28, 28):
             img = img.resize((28, 28), Image.LANCZOS)
+            
+         # Apply transformations
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.5,), (0.5,))
+        ])  
 
 
 if __name__ == "__main__":
