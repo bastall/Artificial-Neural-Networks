@@ -142,3 +142,8 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
         if accuracy > best_accuracy:
             best_accuracy = accuracy
             torch.save(model.state_dict(), 'best_fashion_model.pth')
+            
+         # Print statistics
+        epoch_time = time.time() - start_time
+        print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {epoch_loss:.4f}, '
+              f'Test Accuracy: {accuracy:.2f}%, Time: {epoch_time:.2f}s')
