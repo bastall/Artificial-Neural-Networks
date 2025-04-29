@@ -97,8 +97,10 @@ def load_data(batch_size=64):
 #train_loader, test_loader, _, _ = load_data()
 #test_data_loading(train_loader)
 
+def evaluate_model (model, test_loader, device):
+
 def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001):
-    device = torch.device('cuda' if torch.cuda.is_vailable else 'cpu')
+    device = torch.device('cuda' if torch.cuda.is_vailable() else 'cpu')
     print(f"Using device: {device}")
     
     model = model.to(device)
