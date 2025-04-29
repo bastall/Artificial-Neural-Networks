@@ -224,6 +224,18 @@ def interactive_predict(model):
         prediction = predict_image(model, filepath)
         print(f"Classifier: {prediction}")
 
+def main():
+    # Load data
+    train_loader, test_loader, _, _ = load_data(batch_size=64)
+    
+    # Check if a trained model exists, otherwise train one
+    model = FashionClassifier()
+    
+    model = load_or_train_model(model)
+    
+    # Interactive loop for predictions
+    interactive_predict(model)
+
 
 if __name__ == "__main__":
-    
+    main()
