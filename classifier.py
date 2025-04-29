@@ -98,6 +98,17 @@ def load_data(batch_size=64):
 #test_data_loading(train_loader)
 
 def evaluate_model (model, test_loader, device):
+    model.eval()
+    correct = 0
+    total = 0
+    
+    with torch.no_grad():
+        for images, labels in test_loader:
+            images, labels = images.to(device), labels.to(device)
+            outputs = model(images)
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
 
 def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001):
     device = torch.device('cuda' if torch.cuda.is_vailable() else 'cpu')
