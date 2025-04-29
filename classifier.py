@@ -108,6 +108,7 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
     # Training log
     log = []
     best_accuracy = 0.0
+    total_step = len(train_loader)
     
     # Training loop
     for epoch in range(num_epochs):
