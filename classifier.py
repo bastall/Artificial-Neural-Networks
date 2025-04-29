@@ -201,7 +201,7 @@ def predict_image(model, image_path):
         return f"Error processing image: {str(e)}"
     
     
-def load_or_train_model(model):
+def load_or_train_model(model, train_loader, test_loader):
     if os.path.exists('best_fashion_model.pth'):
         model.load_state_dict(torch.load('best_fashion_model.pth', map_location=torch.device('cpu')))
         print("Loaded pre-trained model")
@@ -228,10 +228,10 @@ def main():
     # Load data
     train_loader, test_loader, _, _ = load_data(batch_size=64)
     
-    # Check if a trained model exists, otherwise train one
+    # Check if a trained model exists, if not, train one
     model = FashionClassifier()
     
-    model = load_or_train_model(model)
+    model = load_or_train_model(model, train_loader, test_loader)
     
     # Interactive loop for predictions
     interactive_predict(model)
