@@ -79,24 +79,6 @@ def load_data(batch_size=64):
     
     return train_loader, test_loader, train_dataset, test_dataset
 
-# Test if data is loading correctly
-#def test_data_loading(train_loader):
-    # Get a single batch from the train_loader
-  #  data_iter = iter(train_loader)
-   # images, labels = next(data_iter)
-
-    # Print the shape of the images and the corresponding labels
-    #print(f"Batch of images shape: {images.shape}")
-    #print(f"Batch of labels shape: {labels.shape}")
-
-    # visualize one image from the batch
-    #plt.imshow(images[0].squeeze(), cmap='gray')
-    #plt.title(f"Label: {labels[0]}")
-    #plt.show()
-
-#train_loader, test_loader, _, _ = load_data()
-#test_data_loading(train_loader)
-
 def evaluate_model (model, test_loader, device):
     model.eval()
     correct = 0
@@ -114,7 +96,7 @@ def evaluate_model (model, test_loader, device):
     return accuracy        
 
 def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001):
-    device = torch.device('cuda' if torch.cuda.is_vailable() else 'cpu')
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Using device: {device}")
     
     model = model.to(device)
@@ -179,3 +161,9 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
     torch.save(model.state_dict(), 'final_fashion_model.pth')
     
     return model, log
+
+
+if __name__ == "__main__":
+    train_loader, test_loader, _, _ = load_data()
+    model = FashionClassifier()
+    trained_model, training_log = train_model(model, train_loader, test_loader, num_epochs=5)
