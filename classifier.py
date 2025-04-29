@@ -155,3 +155,11 @@ def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0
             'accuracy': accuracy,
             'time': epoch_time
         })
+        
+    print(f'Best accuracy: {best_accuracy:.2f}%')
+    print(f'Training complete!')
+    
+    # Save final model
+    torch.save(model.state_dict(), 'final_fashion_model.pth')
+    
+    return model, log
