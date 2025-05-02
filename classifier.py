@@ -10,7 +10,8 @@ class FashionClassifier(nn.Module):
     def __init__(self):
         super(FashionClassifier, self).__init__()
         
-        
+        # flatten the image into 784 dimensional vector
+        self.flatten = nn.flatten()
         
     def forward(self, x):
         x = self.conv1(x)
