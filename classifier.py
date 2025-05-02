@@ -35,7 +35,8 @@ class FashionClassifier(nn.Module):
         x = self.relu1(x)
         x = self.dropout1(x)
         
-        
+        # Output layer
+        x = self.fc3(x)
         
         return x
 
