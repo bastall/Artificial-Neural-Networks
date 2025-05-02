@@ -109,6 +109,7 @@ def train_model(model, train_loader, test_loader, num_epochs=15, learning_rate=0
     # Training loop
     for epoch in range(num_epochs):
         model.train()
+        running_loss = 0.0
          
         for i, (images, labels) in enumerate(train_loader):
             images, labels = images.to(device), labels.to(device)
