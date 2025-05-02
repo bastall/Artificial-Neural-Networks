@@ -23,6 +23,9 @@ class FashionClassifier(nn.Module):
         self.relu2 = nn.ReLU()
         self.dropout2 = nn.Dropout(0.3)
         
+        # Output layer
+        self.fc3 = nn.Linear(256, 10)
+        
     def forward(self, x):
         x = self.conv1(x)
         x = self.conv2(x)
