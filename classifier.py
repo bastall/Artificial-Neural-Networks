@@ -209,7 +209,7 @@ def load_or_train_model(model, train_loader, test_loader):
         print("Loaded pre-trained model")
     else:
         print("Training new model...")
-        model = train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001)
+        model = train_model(model, train_loader, test_loader, num_epochs=15, learning_rate=0.001)
     return model
 
 def interactive_predict(model):
