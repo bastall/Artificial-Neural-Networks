@@ -123,6 +123,8 @@ def train_model(model, train_loader, test_loader, num_epochs=15, learning_rate=0
             loss.backward()
             optimizer.step()
             
+            running_loss += loss.item()
+            
             # Print step statistics
             if (i+1) % 50 == 0:
                 log_entry = 'Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'.format(
