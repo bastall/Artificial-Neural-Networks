@@ -93,7 +93,7 @@ def evaluate_model (model, test_loader, device):
     accuracy = 100 * correct / total
     return accuracy        
 
-def train_model(model, train_loader, test_loader, num_epochs=10, learning_rate=0.001):
+def train_model(model, train_loader, test_loader, num_epochs=15, learning_rate=0.001):
     device = torch.device('cpu')  # use CPU
     model = model.to(device)
     
