@@ -131,6 +131,12 @@ def train_model(model, train_loader, test_loader, num_epochs=15, learning_rate=0
                     epoch+1, num_epochs, i+1, total_step, loss.item())
                 print(log_entry)
                 log_entries.append(log_entry)
+        
+        # Log epoch average loss
+        epoch_loss = running_loss / len(train_loader)
+        log_entry = 'Epoch [{}/{}], Average Loss: {:.4f}'.format(epoch+1, num_epochs, epoch_loss)
+        print(log_entry)
+        log_entries.append(log_entry)
             
         # Evaluate model after each epoch
         model.eval()
