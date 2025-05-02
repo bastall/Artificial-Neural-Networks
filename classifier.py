@@ -27,6 +27,13 @@ class FashionClassifier(nn.Module):
         self.fc3 = nn.Linear(256, 10)
         
     def forward(self, x):
+        # x shape: [batch_size, 1, 28, 28]
+        x = self.flatten(x)  # Flatten to [batch_size, 784]
+        
+        # First layer
+        x = self.fc1(x)
+        x = self.relu1(x)
+        x = self.dropout1(x)
         
         return x
 
