@@ -35,6 +35,8 @@ class FashionClassifier(nn.Module):
         x = self.relu1(x)
         x = self.dropout1(x)
         
+        
+        
         return x
 
 def load_data(batch_size=64):
