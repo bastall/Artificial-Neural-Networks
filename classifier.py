@@ -97,8 +97,6 @@ def train_model(model, train_loader, test_loader, num_epochs=15, learning_rate=0
     device = torch.device('cpu')  # use CPU
     model = model.to(device)
     
-    model = model.to(device)
-    
     # Loss function and optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
