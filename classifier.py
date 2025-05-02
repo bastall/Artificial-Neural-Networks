@@ -18,6 +18,11 @@ class FashionClassifier(nn.Module):
         self.relu1 = nn.ReLU()
         self.dropout1 = nn.Dropout(0.3)
         
+        # Second fully connected layer
+        self.fc2 = nn.Linear(512, 256)
+        self.relu2 = nn.ReLU()
+        self.dropout2 = nn.Dropout(0.3)
+        
     def forward(self, x):
         x = self.conv1(x)
         x = self.conv2(x)
