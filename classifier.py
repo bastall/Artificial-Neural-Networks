@@ -11,7 +11,7 @@ class FashionClassifier(nn.Module):
         super(FashionClassifier, self).__init__()
         
         # flatten the image into 784 dimensional vector
-        self.flatten = nn.flatten()
+        self.flatten = nn.Flatten()
         
         # First fully connected layer
         self.fc1 = nn.Linear(28 * 28, 512)
@@ -35,6 +35,11 @@ class FashionClassifier(nn.Module):
         x = self.relu1(x)
         x = self.dropout1(x)
         
+        # Second layer
+        x = self.fc2(x)
+        x = self.relu2(x)
+        x = self.dropout2(x)
+
         # Output layer
         x = self.fc3(x)
         
