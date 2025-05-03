@@ -187,7 +187,7 @@ def predict_image(model, image_path):
             
          # Apply transformations
         transform_norm = transforms.Normalize((0.5,), (0.5,))
-        img_tensor = transform_norm(img.unsqueeze(0)).unsqueeze(0)  # Add channel and batch dimensions
+        img_tensor = transform_norm(img.float().unsqueeze(0)).unsqueeze(0)  # Add channel and batch dimensions
         img_tensor = img_tensor.to(device) 
         
         # Forward pass
