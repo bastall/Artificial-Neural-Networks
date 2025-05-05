@@ -98,13 +98,13 @@ def evaluate_model (model, test_loader, device):
     accuracy = 100 * correct / total
     return accuracy        
 
-def train_model(model, train_loader, test_loader, num_epochs=15, learning_rate=0.001):
+def train_model(model, train_loader, test_loader, num_epochs=15, learning_rate=0.001, momentum = 0.9):
     device = torch.device('cpu')  # use CPU
     model = model.to(device)
     
     # Loss function and optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+    optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=momentum)
     
     # Training log
     log_entries = []
