@@ -1,3 +1,9 @@
+## Overview
+A Python feedforward neural network built with PyTorch that classifies 
+fashion product images from the FashionMNIST dataset into 10 categories 
+(e.g. dress, sneaker, trouser). Trained on 60,000 images and evaluated 
+on 10,000 test images.
+
 # Project Structure
    - classifier.py: Main Python script containing the neural network implementation, training and prediction functions.
    -log.txt: training log showing loss values and accuracy metrics during model training
